@@ -1,0 +1,35 @@
+<!doctype html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>s-accordion tests</title>
+  <script src="../../web-component-tester/browser.js"></script>
+  <link rel="import" href="../s-accordion.html">
+</head>
+
+<body>
+  <test-fixture id="default">
+    <template>
+      <s-accordion></s-accordion>
+    </template>
+  </test-fixture>
+
+  <script>
+    describe('sample test', function() {
+      var element;
+
+      beforeEach(function() {
+        element = fixture('default');
+      });
+
+      it('should pass', function() {
+        expect(element.localName).to.be.equal('s-accordion');
+      });
+
+      it('should not expose class name globally', function() {
+        expect(window.SAccordion).not.to.be.ok;
+      });
+
+    });
+  </script>
+</body>
