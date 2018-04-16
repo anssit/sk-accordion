@@ -1,0 +1,74 @@
+<dom-module id="details-demos">
+  <template>
+    <style include="vaadin-component-demo-shared-styles">
+      :host {
+        display: block;
+      }
+    </style>
+
+    <h3>Details</h3>
+    <vaadin-demo-snippet id="details-demos-simple">
+      <template preserve-content>
+        <dom-bind>
+          <template>
+            <sk-details opened="{{opened}}">
+              <h4 slot="summary">Header for the content</h4>
+              <iron-icon slot="summary" icon="vaadin:chevron-down-small" hidden$="[[opened]]"></iron-icon>
+              <iron-icon slot="summary" icon="vaadin:chevron-up-small" hidden$="[[!opened]]"></iron-icon>
+              <p>The actual content that is hidden / revealed.</p>
+            </sk-details>
+            <!-- sample styles for demo purpose -->
+            <style>
+              iron-icon {
+                width: 16px;
+                height: 16px;
+                margin-left: 8px;
+              }
+
+              h4,
+              p {
+                margin: 0;
+              }
+            </style>
+          </template>
+        </dom-bind>
+      </template>
+    </vaadin-demo-snippet>
+
+    <h3>Horizontal</h3>
+    <vaadin-demo-snippet id="details-demos-horizontal">
+      <template preserve-content>
+        <dom-bind>
+          <template>
+            <sk-details opened="{{opened}}" orientation="horizontal">
+              <iron-icon slot="summary" icon="vaadin:folder-o" hidden$="[[opened]]"></iron-icon>
+              <iron-icon slot="summary" icon="vaadin:folder-open-o" hidden$="[[!opened]]"></iron-icon>
+              <p>The actual content that is hidden / revealed.</p>
+            </sk-details>
+            <!-- sample styles for demo purpose -->
+            <style>
+              iron-icon {
+                margin-right: 8px;
+              }
+
+              p {
+                margin: 0;
+                white-space: nowrap;
+                font-size: 15px;
+              }
+            </style>
+          </template>
+        </dom-bind>
+      </template>
+    </vaadin-demo-snippet>
+
+  </template>
+  <script>
+    class DetailsDemos extends DemoReadyEventEmitter(Polymer.Element) {
+      static get is() {
+        return 'details-demos';
+      }
+    }
+    customElements.define(DetailsDemos.is, DetailsDemos);
+  </script>
+</dom-module>

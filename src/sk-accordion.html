@@ -7,7 +7,7 @@ This program is available under Apache License Version 2.0, available at https:/
 <link rel="import" href="../../polymer/polymer-element.html">
 <link rel="import" href="../../vaadin-themable-mixin/vaadin-themable-mixin.html">
 
-<dom-module id="s-accordion">
+<dom-module id="sk-accordion">
   <template>
     <style>
       :host {
@@ -34,9 +34,9 @@ This program is available under Apache License Version 2.0, available at https:/
        * @memberof Vaadin
        * @demo demo/index.html
        */
-      class SAccordion extends Vaadin.ThemableMixin(Polymer.Element) {
+      class SkAccordion extends Vaadin.ThemableMixin(Polymer.Element) {
         static get is() {
-          return 's-accordion';
+          return 'sk-accordion';
         }
 
         static get version() {
@@ -45,16 +45,22 @@ This program is available under Apache License Version 2.0, available at https:/
 
         static get properties() {
           return {
+            /* The array of items */
+            items: {
+              type: Array,
+              readOnly: true,
+              notify: true
+            }
           };
         }
       }
 
-      customElements.define(SAccordion.is, SAccordion);
+      customElements.define(SkAccordion.is, SkAccordion);
 
       /**
        * @namespace Vaadin
        */
-      window.Vaadin.AccordionElement = SAccordion;
+      window.Vaadin.AccordionElement = SkAccordion;
     })();
   </script>
 </dom-module>

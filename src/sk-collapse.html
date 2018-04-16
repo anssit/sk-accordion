@@ -1,0 +1,230 @@
+<!--
+@license
+Copyright (c) 2018 Vaadin Ltd.
+This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
+-->
+
+<link rel="import" href="../../polymer/polymer-element.html">
+<link rel="import" href="../../iron-resizable-behavior/iron-resizable-behavior.html">
+<link rel="import" href="../../vaadin-themable-mixin/vaadin-themable-mixin.html">
+
+<dom-module id="sk-collapse">
+  <template>
+    <style>
+      :host {
+        display: block;
+        transition-duration: var(--s-collapse-transition-duration, 300ms);
+        /* Safari 10 needs this property prefixed to correctly apply the custom property */
+        -webkit-transition-duration: var(--s-collapse-transition-duration, 300ms);
+        overflow: visible;
+      }
+
+      :host([hidden]),
+      :host([collapsed]) {
+        display: none !important;
+      }
+
+      :host(:not([expanded])) {
+        overflow: hidden;
+      }
+    </style>
+    <slot></slot>
+  </template>
+
+  <script>
+    (function() {
+
+      /**
+       * `<s-collapse>` is a Polymer 2 element.
+       *
+       * ```
+       * <s-collapse></s-collapse>
+       * ```
+       *
+       * @memberof Vaadin
+       * @demo demo/index.html
+       */
+      class SkCollapse extends
+        Vaadin.ThemableMixin(
+          Polymer.mixinBehaviors([Polymer.IronResizableBehavior], Polymer.Element)) {
+
+        static get is() {
+          return 'sk-collapse';
+        }
+
+        static get version() {
+          return '0.1.0';
+        }
+
+        static get properties() {
+          return {
+            /**
+             * Set opened to true to show the collapse element and to false to hide it.
+             */
+            opened: {
+              type: Boolean,
+              notify: true,
+              value: false,
+              observer: '_openedChanged'
+            },
+
+            /**
+             * The collapse's orientation. Possible values are: `horizontal|vertical`.
+             */
+            orientation: {
+              type: String,
+              reflectToAttribute: true,
+              notify: true,
+              value: 'vertical',
+              observer: '_orientationChanged'
+            },
+
+            /**
+             * Set to true to disable animations.
+             */
+            noAnimation: {
+              type: Boolean
+            },
+
+            /**
+             * Stores the desired size of the collapse body.
+             * @private
+             */
+            _desiredSize: {
+              type: String,
+              value: ''
+            }
+          };
+        }
+
+        get dimension() {
+          return this.orientation === 'horizontal' ? 'width' : 'height';
+        }
+
+        /**
+         * `maxWidth` or `maxHeight`.
+         * @private
+         */
+        get _dimensionMax() {
+          return this.orientation === 'horizontal' ? 'maxWidth' : 'maxHeight';
+        }
+
+        _toggleAttr(attr, bool) {
+          if (bool) {
+            this.setAttribute(attr, '');
+          } else if (this.hasAttribute(attr)) {
+            this.removeAttribute(attr);
+          }
+        }
+
+        _openedChanged(opened) {
+          this.setAttribute('aria-hidden', !opened);
+
+          this._toggleAttr('collapsed', false);
+          this._toggleAttr('expanded', false);
+
+          this.updateSize(opened ? 'auto' : '0px', true)
+            .then(() => {
+              this._endTransition();
+              if (opened) {
+                this.focus();
+              }
+            });
+        }
+
+        _orientationChanged(orientation) {
+          if (orientation && ['horizontal', 'vertical'].indexOf(orientation) === -1) {
+            console.warn(`incorrect "orientation" value assigned to collapse: $`)
+          }
+          this.style.transitionProperty = `max-${this.dimension}`;
+          var otherDimension = this._dimensionMax === 'maxWidth' ? 'maxHeight' : 'maxWidth';
+          this.style[otherDimension] = '';
+          this.updateSize(this.opened ? 'auto' : '0px', false).then(() => this._endTransition());
+        }
+
+        _calcSize() {
+          return this.getBoundingClientRect()[this.dimension] + 'px';
+        }
+
+        _endTransition() {
+          this.style[this._dimensionMax] = this._desiredSize;
+
+          this._toggleAttr('collapsed', !this.opened);
+          this._toggleAttr('expanded', this.opened);
+
+          this._updateTransition(false);
+          this.notifyResize();
+        }
+
+        /**
+         * Updates the size of the element.
+         * @param {string} size The new value for `maxWidth` / `maxHeight` CSS property, usually `auto` or `0px`.
+         * @param {boolean=} animated if `true` updates the size with an animation, otherwise without.
+         */
+        updateSize(size, animate) {
+          this.setAttribute('transitioning', '');
+
+          // Consider 'auto' as '', to take full size.
+          size = size === 'auto' ? '' : size;
+
+          var willAnimate = animate && !this.noAnimation && this.isAttached && this._desiredSize !== size;
+
+          this._desiredSize = size;
+
+          return new Promise(resolve => {
+
+            if (willAnimate) {
+              // Animation will start at the current size.
+              var startSize = this._calcSize();
+
+              // For `auto` we must calculate what is the final size for the animation.
+              // After the transition is done, `_endTransition` will set the size back to `auto`.
+              if (size === '') {
+                this.style[this._dimensionMax] = '';
+                size = this._calcSize();
+              }
+
+              // Go to startSize without animation.
+              this.style[this._dimensionMax] = startSize;
+
+              // Force layout to ensure transition will go. Set scrollTop to itself
+              // so that compilers won't remove it.
+              this.scrollTop = this.scrollTop;
+
+              // Enable animation.
+              this._updateTransition(true);
+
+              // If final size is the same as startSize it will not animate.
+              willAnimate = (size !== startSize);
+            }
+
+            if (willAnimate) {
+              const listener = () => {
+                this.removeEventListener('transitionend', listener);
+                this.removeAttribute('transitioning');
+                resolve();
+              };
+              this.addEventListener('transitionend', listener);
+              this.style[this._dimensionMax] = size;
+            } else {
+              this.style[this._dimensionMax] = size;
+              this.removeAttribute('transitioning');
+              resolve();
+            }
+          });
+        }
+
+        _updateTransition(enabled) {
+          this.style.transitionDuration = (enabled && !this.noAnimation) ? '' : '0s';
+        }
+      }
+
+      customElements.define(SkCollapse.is, SkCollapse);
+
+      /**
+       * @namespace Vaadin
+       */
+      window.Vaadin.CollapseElement = SkCollapse;
+    })();
+  </script>
+</dom-module>

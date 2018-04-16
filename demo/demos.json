@@ -1,23 +1,23 @@
 {
-  "name": "Vaadin Element",
+  "name": "Accordion Element",
   "pages": [
   {
-    "name": "Basic Examples",
-    "url": "element-basic-demos",
-    "src": "element-basic-demos.html",
+    "name": "Collapse",
+    "url": "collapse-demos",
+    "src": "collapse-demos.html",
     "meta": {
-      "title": "s-accordion Basic Examples",
+      "title": "Collapse Examples",
       "description": "",
       "image": ""
      }
   }
   ,
   {
-    "name": "Advanced Usage",
-    "url": "element-advanced-demos",
-    "src": "element-advanced-demos.html",
+    "name": "Details",
+    "url": "details-demos",
+    "src": "details-demos.html",
     "meta": {
-      "title": "s-accordion Advanced Examples",
+      "title": "Details Examples",
       "description": "",
       "image": ""
      }

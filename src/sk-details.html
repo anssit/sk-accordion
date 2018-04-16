@@ -1,0 +1,113 @@
+<!--
+@license
+Copyright (c) 2018 Vaadin Ltd.
+This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
+-->
+
+<link rel="import" href="../../polymer/polymer-element.html">
+<link rel="import" href="../../vaadin-themable-mixin/vaadin-themable-mixin.html">
+<link rel="import" href="sk-collapse.html">
+
+
+<dom-module id="sk-details">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      :host([hidden]) {
+        display: none !important;
+      }
+
+      [part="toggle-button"] {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      :host([orientation="horizontal"]) {
+        display: flex;
+      }
+    </style>
+
+    <div on-click="_onToggleClick" part="toggle-button">
+      <slot name="summary"></slot>
+    </div>
+
+    <sk-collapse orientation="{{orientation}}" opened="{{opened}}" part="collapse">
+      <slot></slot>
+    </sk-collapse>
+
+  </template>
+
+  <script>
+    (function() {
+      /**
+       * `<sk-details>` is a Polymer 2 element.
+       *
+       * ```
+       * <sk-details></sk-details>
+       * ```
+       *
+       * @memberof Vaadin
+       * @demo demo/index.html
+       */
+      class SkDetails extends Vaadin.ThemableMixin(Polymer.Element) {
+        static get is() {
+          return 'sk-details';
+        }
+
+        static get version() {
+          return '0.1.0';
+        }
+
+        static get properties() {
+          return {
+            /**
+             * Set opened to true to show the collapse element and to false to hide it.
+             */
+            opened: {
+              type: Boolean,
+              reflectToAttribute: true,
+              notify: true
+            },
+
+            orientation: {
+              type: String,
+              notify: true,
+              reflectToAttribute: true
+            }
+          };
+        }
+
+        static get observers() {
+          return [
+            '_updateAriaExpanded(opened, _toggleElement)'
+          ];
+        }
+
+        ready() {
+          super.ready();
+          this.setAttribute('role', 'region');
+          this._toggleElement = this.shadowRoot.querySelector('details-button');
+        }
+
+        _updateAriaExpanded(opened, toggleElement) {
+          toggleElement && toggleElement.setAttribute('aria-expanded', opened);
+        }
+
+        _onToggleClick() {
+          this.opened = !this.opened;
+        }
+      }
+
+      customElements.define(SkDetails.is, SkDetails);
+
+      /**
+       * @namespace Vaadin
+       */
+      window.Vaadin.DetailsElement = SkDetails;
+    })();
+  </script>
+</dom-module>

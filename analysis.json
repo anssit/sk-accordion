@@ -1,0 +1,685 @@
+{
+  "schema_version": "1.0.0",
+  "namespaces": [
+    {
+      "name": "Vaadin",
+      "description": "",
+      "summary": "",
+      "sourceRange": {
+        "file": "src/sk-details.html",
+        "start": {
+          "line": 109,
+          "column": 6
+        },
+        "end": {
+          "line": 109,
+          "column": 47
+        }
+      },
+      "elements": [
+        {
+          "description": "`<s-accordion>` is a Polymer 2 element.\n\n```\n<s-accordion></s-accordion>\n```",
+          "summary": "",
+          "path": "src/sk-accordion.html",
+          "properties": [
+            {
+              "name": "items",
+              "type": "Array",
+              "description": "The array of items",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 48,
+                  "column": 12
+                },
+                "end": {
+                  "line": 52,
+                  "column": 13
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "notify": true,
+                  "readOnly": true
+                }
+              }
+            }
+          ],
+          "methods": [],
+          "staticMethods": [],
+          "demos": [
+            {
+              "url": "demo/index.html",
+              "description": ""
+            }
+          ],
+          "metadata": {},
+          "sourceRange": {
+            "start": {
+              "line": 36,
+              "column": 6
+            },
+            "end": {
+              "line": 55,
+              "column": 7
+            }
+          },
+          "privacy": "public",
+          "superclass": "HTMLElement",
+          "name": "Vaadin.SkAccordion",
+          "attributes": [
+            {
+              "name": "items",
+              "description": "The array of items",
+              "sourceRange": {
+                "start": {
+                  "line": 48,
+                  "column": 12
+                },
+                "end": {
+                  "line": 52,
+                  "column": 13
+                }
+              },
+              "metadata": {},
+              "type": "Array"
+            }
+          ],
+          "events": [
+            {
+              "type": "CustomEvent",
+              "name": "items-changed",
+              "description": "Fired when the `items` property changes.",
+              "metadata": {}
+            }
+          ],
+          "styling": {
+            "cssVariables": [],
+            "selectors": []
+          },
+          "slots": [
+            {
+              "description": "",
+              "name": "",
+              "range": {
+                "file": "src/sk-accordion.html",
+                "start": {
+                  "line": 20,
+                  "column": 4
+                },
+                "end": {
+                  "line": 20,
+                  "column": 17
+                }
+              }
+            }
+          ],
+          "tagname": "sk-accordion"
+        },
+        {
+          "description": "`<s-collapse>` is a Polymer 2 element.\n\n```\n<s-collapse></s-collapse>\n```",
+          "summary": "",
+          "path": "src/sk-collapse.html",
+          "properties": [
+            {
+              "name": "opened",
+              "type": "boolean",
+              "description": "Set opened to true to show the collapse element and to false to hide it.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 63,
+                  "column": 12
+                },
+                "end": {
+                  "line": 68,
+                  "column": 13
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "notify": true,
+                  "observer": "\"_openedChanged\""
+                }
+              },
+              "defaultValue": "false"
+            },
+            {
+              "name": "orientation",
+              "type": "string",
+              "description": "The collapse's orientation. Possible values are: `horizontal|vertical`.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 73,
+                  "column": 12
+                },
+                "end": {
+                  "line": 79,
+                  "column": 13
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "notify": true,
+                  "observer": "\"_orientationChanged\""
+                }
+              },
+              "defaultValue": "\"vertical\""
+            },
+            {
+              "name": "noAnimation",
+              "type": "boolean",
+              "description": "Set to true to disable animations.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 84,
+                  "column": 12
+                },
+                "end": {
+                  "line": 86,
+                  "column": 13
+                }
+              },
+              "metadata": {
+                "polymer": {}
+              }
+            },
+            {
+              "name": "_desiredSize",
+              "type": "string",
+              "description": "Stores the desired size of the collapse body.",
+              "privacy": "private",
+              "sourceRange": {
+                "start": {
+                  "line": 92,
+                  "column": 12
+                },
+                "end": {
+                  "line": 95,
+                  "column": 13
+                }
+              },
+              "metadata": {
+                "polymer": {}
+              },
+              "defaultValue": "\"\""
+            }
+          ],
+          "methods": [
+            {
+              "name": "_toggleAttr",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 111,
+                  "column": 8
+                },
+                "end": {
+                  "line": 117,
+                  "column": 9
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "attr"
+                },
+                {
+                  "name": "bool"
+                }
+              ]
+            },
+            {
+              "name": "_openedChanged",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 119,
+                  "column": 8
+                },
+                "end": {
+                  "line": 132,
+                  "column": 9
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "opened"
+                }
+              ]
+            },
+            {
+              "name": "_orientationChanged",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 134,
+                  "column": 8
+                },
+                "end": {
+                  "line": 142,
+                  "column": 9
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "orientation"
+                }
+              ]
+            },
+            {
+              "name": "_calcSize",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 144,
+                  "column": 8
+                },
+                "end": {
+                  "line": 146,
+                  "column": 9
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "_endTransition",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 148,
+                  "column": 8
+                },
+                "end": {
+                  "line": 156,
+                  "column": 9
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "updateSize",
+              "description": "Updates the size of the element.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 163,
+                  "column": 8
+                },
+                "end": {
+                  "line": 214,
+                  "column": 9
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "size",
+                  "type": "string",
+                  "description": "The new value for `maxWidth` / `maxHeight` CSS property, usually `auto` or `0px`."
+                },
+                {
+                  "name": "animate"
+                }
+              ]
+            },
+            {
+              "name": "_updateTransition",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 216,
+                  "column": 8
+                },
+                "end": {
+                  "line": 218,
+                  "column": 9
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "enabled"
+                }
+              ]
+            }
+          ],
+          "staticMethods": [],
+          "demos": [
+            {
+              "url": "demo/index.html",
+              "description": ""
+            }
+          ],
+          "metadata": {},
+          "sourceRange": {
+            "start": {
+              "line": 46,
+              "column": 6
+            },
+            "end": {
+              "line": 219,
+              "column": 7
+            }
+          },
+          "privacy": "public",
+          "superclass": "HTMLElement",
+          "name": "Vaadin.SkCollapse",
+          "attributes": [
+            {
+              "name": "opened",
+              "description": "Set opened to true to show the collapse element and to false to hide it.",
+              "sourceRange": {
+                "start": {
+                  "line": 63,
+                  "column": 12
+                },
+                "end": {
+                  "line": 68,
+                  "column": 13
+                }
+              },
+              "metadata": {},
+              "type": "boolean"
+            },
+            {
+              "name": "orientation",
+              "description": "The collapse's orientation. Possible values are: `horizontal|vertical`.",
+              "sourceRange": {
+                "start": {
+                  "line": 73,
+                  "column": 12
+                },
+                "end": {
+                  "line": 79,
+                  "column": 13
+                }
+              },
+              "metadata": {},
+              "type": "string"
+            },
+            {
+              "name": "no-animation",
+              "description": "Set to true to disable animations.",
+              "sourceRange": {
+                "start": {
+                  "line": 84,
+                  "column": 12
+                },
+                "end": {
+                  "line": 86,
+                  "column": 13
+                }
+              },
+              "metadata": {},
+              "type": "boolean"
+            }
+          ],
+          "events": [
+            {
+              "type": "CustomEvent",
+              "name": "opened-changed",
+              "description": "Fired when the `opened` property changes.",
+              "metadata": {}
+            },
+            {
+              "type": "CustomEvent",
+              "name": "orientation-changed",
+              "description": "Fired when the `orientation` property changes.",
+              "metadata": {}
+            }
+          ],
+          "styling": {
+            "cssVariables": [],
+            "selectors": []
+          },
+          "slots": [
+            {
+              "description": "",
+              "name": "",
+              "range": {
+                "file": "src/sk-collapse.html",
+                "start": {
+                  "line": 30,
+                  "column": 4
+                },
+                "end": {
+                  "line": 30,
+                  "column": 17
+                }
+              }
+            }
+          ],
+          "tagname": "sk-collapse"
+        },
+        {
+          "description": "`<sk-details>` is a Polymer 2 element.\n\n```\n<sk-details></sk-details>\n```",
+          "summary": "",
+          "path": "src/sk-details.html",
+          "properties": [
+            {
+              "name": "opened",
+              "type": "boolean",
+              "description": "Set opened to true to show the collapse element and to false to hide it.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 69,
+                  "column": 12
+                },
+                "end": {
+                  "line": 73,
+                  "column": 13
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "notify": true
+                }
+              }
+            },
+            {
+              "name": "orientation",
+              "type": "string",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 75,
+                  "column": 12
+                },
+                "end": {
+                  "line": 79,
+                  "column": 13
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "notify": true
+                }
+              }
+            }
+          ],
+          "methods": [
+            {
+              "name": "ready",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 89,
+                  "column": 8
+                },
+                "end": {
+                  "line": 93,
+                  "column": 9
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "_updateAriaExpanded",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 95,
+                  "column": 8
+                },
+                "end": {
+                  "line": 97,
+                  "column": 9
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "opened"
+                },
+                {
+                  "name": "toggleElement"
+                }
+              ]
+            },
+            {
+              "name": "_onToggleClick",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 99,
+                  "column": 8
+                },
+                "end": {
+                  "line": 101,
+                  "column": 9
+                }
+              },
+              "metadata": {},
+              "params": []
+            }
+          ],
+          "staticMethods": [],
+          "demos": [
+            {
+              "url": "demo/index.html",
+              "description": ""
+            }
+          ],
+          "metadata": {},
+          "sourceRange": {
+            "start": {
+              "line": 55,
+              "column": 6
+            },
+            "end": {
+              "line": 102,
+              "column": 7
+            }
+          },
+          "privacy": "public",
+          "superclass": "HTMLElement",
+          "name": "Vaadin.SkDetails",
+          "attributes": [
+            {
+              "name": "opened",
+              "description": "Set opened to true to show the collapse element and to false to hide it.",
+              "sourceRange": {
+                "start": {
+                  "line": 69,
+                  "column": 12
+                },
+                "end": {
+                  "line": 73,
+                  "column": 13
+                }
+              },
+              "metadata": {},
+              "type": "boolean"
+            },
+            {
+              "name": "orientation",
+              "description": "",
+              "sourceRange": {
+                "start": {
+                  "line": 75,
+                  "column": 12
+                },
+                "end": {
+                  "line": 79,
+                  "column": 13
+                }
+              },
+              "metadata": {},
+              "type": "string"
+            }
+          ],
+          "events": [
+            {
+              "type": "CustomEvent",
+              "name": "opened-changed",
+              "description": "Fired when the `opened` property changes.",
+              "metadata": {}
+            },
+            {
+              "type": "CustomEvent",
+              "name": "orientation-changed",
+              "description": "Fired when the `orientation` property changes.",
+              "metadata": {}
+            }
+          ],
+          "styling": {
+            "cssVariables": [],
+            "selectors": []
+          },
+          "slots": [
+            {
+              "description": "",
+              "name": "summary",
+              "range": {
+                "file": "src/sk-details.html",
+                "start": {
+                  "line": 34,
+                  "column": 6
+                },
+                "end": {
+                  "line": 34,
+                  "column": 34
+                }
+              }
+            },
+            {
+              "description": "",
+              "name": "",
+              "range": {
+                "file": "src/sk-details.html",
+                "start": {
+                  "line": 38,
+                  "column": 6
+                },
+                "end": {
+                  "line": 38,
+                  "column": 19
+                }
+              }
+            }
+          ],
+          "tagname": "sk-details"
+        }
+      ]
+    }
+  ]
+}

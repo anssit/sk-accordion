@@ -1,0 +1,93 @@
+<dom-module id="collapse-demos">
+  <template>
+    <style include="vaadin-component-demo-shared-styles">
+      :host {
+        display: block;
+      }
+    </style>
+
+
+    <h3>Simple Collapse</h3>
+    <vaadin-demo-snippet id="collapse-demos-simple">
+      <template preserve-content>
+        <dom-bind>
+          <template>
+            <style>
+              sk-collapse {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 200px;
+                height: 200px;
+                border: dashed 2px #ccc;
+              }
+            </style>
+            <vaadin-checkbox checked="{{opened}}">Opened</vaadin-checkbox>
+            <sk-collapse opened="{{opened}}">
+              <div>The collapsible content</div>
+            </sk-collapse>
+          </template>
+        </dom-bind>
+      </template>
+    </vaadin-demo-snippet>
+
+    <h3>Orientation</h3>
+    <vaadin-demo-snippet id="collapse-demos-orientation">
+      <template preserve-content>
+        <dom-bind>
+          <template>
+            <style>
+              sk-collapse {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 200px;
+                height: 200px;
+                border: dashed 2px #ccc;
+                white-space: nowrap;
+              }
+            </style>
+            <vaadin-checkbox checked="{{opened}}">Opened</vaadin-checkbox>
+            <sk-collapse orientation="horizontal" opened="{{opened}}">
+              <div>The collapsible content</div>
+            </sk-collapse>
+          </template>
+        </dom-bind>
+      </template>
+    </vaadin-demo-snippet>
+
+    <h3>No Animation</h3>
+    <vaadin-demo-snippet id="collapse-demos-orientation">
+      <template preserve-content>
+        <dom-bind>
+          <template>
+            <style>
+              sk-collapse {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 200px;
+                height: 200px;
+                border: dashed 2px #ccc;
+                white-space: nowrap;
+              }
+            </style>
+            <vaadin-checkbox checked="{{opened}}">Opened</vaadin-checkbox>
+            <sk-collapse no-animation opened="{{opened}}">
+              <div>The collapsible content</div>
+            </sk-collapse>
+          </template>
+        </dom-bind>
+      </template>
+    </vaadin-demo-snippet>
+
+  </template>
+  <script>
+    class CollapseDemos extends DemoReadyEventEmitter(Polymer.Element) {
+      static get is() {
+        return 'collapse-demos';
+      }
+    }
+    customElements.define(CollapseDemos.is, CollapseDemos);
+  </script>
+</dom-module>
