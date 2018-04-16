@@ -22,5 +22,16 @@
       "image": ""
      }
   }
-  ]
+  ,
+  {
+    "name": "Accordion",
+    "url": "accordion-demos",
+    "src": "accordion-demos.html",
+    "meta": {
+      "title": "Accordion Examples",
+      "description": "",
+      "image": ""
+     }
+  }
+]
 }

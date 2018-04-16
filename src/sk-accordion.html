@@ -5,13 +5,14 @@ This program is available under Apache License Version 2.0, available at https:/
 -->
 
 <link rel="import" href="../../polymer/polymer-element.html">
+<link rel="import" href="../../polymer/lib/utils/flattened-nodes-observer.html">
 <link rel="import" href="../../vaadin-themable-mixin/vaadin-themable-mixin.html">
 
 <dom-module id="sk-accordion">
   <template>
     <style>
       :host {
-        display: inline-block;
+        display: block;
       }
 
       :host([hidden]) {
@@ -25,10 +26,10 @@ This program is available under Apache License Version 2.0, available at https:/
     (function() {
 
       /**
-       * `<s-accordion>` is a Polymer 2 element.
+       * `<sk-accordion>` is a Polymer 2 element.
        *
        * ```
-       * <s-accordion></s-accordion>
+       * <sk-accordion></sk-accordion>
        * ```
        *
        * @memberof Vaadin
@@ -45,13 +46,49 @@ This program is available under Apache License Version 2.0, available at https:/
 
         static get properties() {
           return {
-            /* The array of items */
+            /**
+             * If true, the accordion allows displaying multiple details sections at the same time,
+             * without one collapsing when the other one is opened.
+             */
+            allowMultipleOpen: {
+              type: Boolean,
+              value: false
+            },
+
+            /**
+             * The list of the details elements managed by the accordion.
+             */
             items: {
               type: Array,
               readOnly: true,
               notify: true
             }
           };
+        }
+
+        ready() {
+          super.ready();
+
+          this._boundUpdateOpened = this._updateOpened.bind(this);
+
+          this._observer = new Polymer.FlattenedNodesObserver(this, info => {
+            this._setItems(this._filterItems(Array.from(this.children)));
+            this._filterItems(info.addedNodes).forEach(el => el.addEventListener('opened-changed', this._boundUpdateOpened));
+          });
+        }
+
+        _filterItems(arr) {
+          return arr.filter(el => el.localName === 'sk-details');
+        }
+
+        _updateOpened(e) {
+          if (e.detail.value && !this.allowMultipleOpen) {
+            this.items.forEach(item => {
+              if (item !== e.target && item.opened) {
+                item.opened = false;
+              }
+            });
+          }
         }
       }
 

@@ -18,22 +18,42 @@
       },
       "elements": [
         {
-          "description": "`<s-accordion>` is a Polymer 2 element.\n\n```\n<s-accordion></s-accordion>\n```",
+          "description": "`<sk-accordion>` is a Polymer 2 element.\n\n```\n<sk-accordion></sk-accordion>\n```",
           "summary": "",
           "path": "src/sk-accordion.html",
           "properties": [
             {
-              "name": "items",
-              "type": "Array",
-              "description": "The array of items",
+              "name": "allowMultipleOpen",
+              "type": "boolean",
+              "description": "If true, the accordion allows displaying multiple details sections at the same time,\nwithout one collapsing when the other one is opened.",
               "privacy": "public",
               "sourceRange": {
                 "start": {
-                  "line": 48,
+                  "line": 52,
                   "column": 12
                 },
                 "end": {
-                  "line": 52,
+                  "line": 55,
+                  "column": 13
+                }
+              },
+              "metadata": {
+                "polymer": {}
+              },
+              "defaultValue": "false"
+            },
+            {
+              "name": "items",
+              "type": "Array",
+              "description": "The list of the details elements managed by the accordion.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 60,
+                  "column": 12
+                },
+                "end": {
+                  "line": 64,
                   "column": 13
                 }
               },
@@ -45,7 +65,67 @@
               }
             }
           ],
-          "methods": [],
+          "methods": [
+            {
+              "name": "ready",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 68,
+                  "column": 8
+                },
+                "end": {
+                  "line": 77,
+                  "column": 9
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "_filterItems",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 79,
+                  "column": 8
+                },
+                "end": {
+                  "line": 81,
+                  "column": 9
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "arr"
+                }
+              ]
+            },
+            {
+              "name": "_updateOpened",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 83,
+                  "column": 8
+                },
+                "end": {
+                  "line": 91,
+                  "column": 9
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "e"
+                }
+              ]
+            }
+          ],
           "staticMethods": [],
           "demos": [
             {
@@ -56,11 +136,11 @@
           "metadata": {},
           "sourceRange": {
             "start": {
-              "line": 36,
+              "line": 37,
               "column": 6
             },
             "end": {
-              "line": 55,
+              "line": 92,
               "column": 7
             }
           },
@@ -69,15 +149,31 @@
           "name": "Vaadin.SkAccordion",
           "attributes": [
             {
-              "name": "items",
-              "description": "The array of items",
+              "name": "allow-multiple-open",
+              "description": "If true, the accordion allows displaying multiple details sections at the same time,\nwithout one collapsing when the other one is opened.",
               "sourceRange": {
                 "start": {
-                  "line": 48,
+                  "line": 52,
                   "column": 12
                 },
                 "end": {
-                  "line": 52,
+                  "line": 55,
+                  "column": 13
+                }
+              },
+              "metadata": {},
+              "type": "boolean"
+            },
+            {
+              "name": "items",
+              "description": "The list of the details elements managed by the accordion.",
+              "sourceRange": {
+                "start": {
+                  "line": 60,
+                  "column": 12
+                },
+                "end": {
+                  "line": 64,
                   "column": 13
                 }
               },
@@ -104,11 +200,11 @@
               "range": {
                 "file": "src/sk-accordion.html",
                 "start": {
-                  "line": 20,
+                  "line": 21,
                   "column": 4
                 },
                 "end": {
-                  "line": 20,
+                  "line": 21,
                   "column": 17
                 }
               }

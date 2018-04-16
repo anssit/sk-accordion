@@ -1,0 +1,62 @@
+<dom-module id="accordion-demos">
+  <template>
+    <style include="vaadin-component-demo-shared-styles">
+      :host {
+        display: block;
+      }
+    </style>
+
+    <h3>Accordion</h3>
+    <vaadin-demo-snippet id="accordion-demos-simple">
+      <template preserve-content>
+        <sk-accordion>
+          <sk-details>
+            <h4 slot="summary">Section 1</h4>
+            <div>The section 1 content.</div>
+          </sk-details>
+          <sk-details>
+            <h4 slot="summary">Section 2</h4>
+            <div>The section 2 content.</div>
+          </sk-details>
+        </sk-accordion>
+        <!-- sample styles for demo purpose -->
+        <style>
+          h4 {
+            margin: 0;
+          }
+        </style>
+      </template>
+    </vaadin-demo-snippet>
+
+    <h3>Allow Multiple Open</h3>
+    <vaadin-demo-snippet id="accordion-demos-allow-multiple">
+      <template preserve-content>
+        <sk-accordion allow-multiple-open>
+          <sk-details>
+            <h4 slot="summary">Section 1</h4>
+            <div>The section 1 content.</div>
+          </sk-details>
+          <sk-details>
+            <h4 slot="summary">Section 2</h4>
+            <div>The section 2 content.</div>
+          </sk-details>
+        </sk-accordion>
+        <!-- sample styles for demo purpose -->
+        <style>
+          h4 {
+            margin: 0;
+          }
+        </style>
+      </template>
+    </vaadin-demo-snippet>
+
+  </template>
+  <script>
+    class AccordionDemos extends DemoReadyEventEmitter(Polymer.Element) {
+      static get is() {
+        return 'accordion-demos';
+      }
+    }
+    customElements.define(AccordionDemos.is, AccordionDemos);
+  </script>
+</dom-module>
