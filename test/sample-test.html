@@ -2,15 +2,15 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>s-accordion tests</title>
+  <title>sk-accordion tests</title>
   <script src="../../web-component-tester/browser.js"></script>
-  <link rel="import" href="../s-accordion.html">
+  <link rel="import" href="../sk-accordion.html">
 </head>
 
 <body>
   <test-fixture id="default">
     <template>
-      <s-accordion></s-accordion>
+      <sk-accordion></sk-accordion>
     </template>
   </test-fixture>
 
@@ -23,7 +23,7 @@
       });
 
       it('should pass', function() {
-        expect(element.localName).to.be.equal('s-accordion');
+        expect(element.localName).to.be.equal('sk-accordion');
       });
 
       it('should not expose class name globally', function() {

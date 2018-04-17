@@ -1,12 +1,12 @@
 {
   "name": "sk-accordion",
   "version": "0.1.0",
-  "description": "s-accordion",
-  "main": "s-accordion.html",
-  "repository": "vaadin/s-accordion",
+  "description": "Accordion component",
+  "main": "sk-accordion.html",
+  "repository": "web-padawan/sk-accordion",
   "keywords": [
     "Vaadin",
-    "s-accordion",
+    "accordion",
     "web-components",
     "web-component",
     "polymer"
@@ -14,9 +14,8 @@
   "author": "Vaadin Ltd",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/vaadin/s-accordion/issues"
+    "url": "https://github.com/web-padawan/sk-accordion/issues"
   },
-  "homepage": "https://vaadin.com/components",
   "scripts": {
     "test": "wct",
     "preversion": "gulp version:update"

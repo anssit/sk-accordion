@@ -4,11 +4,11 @@
   "authors": [
     "Vaadin Ltd"
   ],
-  "description": "s-accordion",
-  "main": "s-accordion.html",
+  "description": "Accordion component",
+  "main": "sk-accordion.html",
   "keywords": [
     "Vaadin",
-    "s-accordion",
+    "accordion",
     "web-components",
     "web-component",
     "polymer"
